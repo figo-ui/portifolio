@@ -72,7 +72,7 @@ export default function Navbar() {
               className="relative inline-flex h-10 overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
             >
               <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-900 transition-colors">
+              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-900 transition-colors">
                 Let's Talk
               </span>
             </Link>
@@ -80,8 +80,9 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="md:hidden text-foreground p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -99,7 +100,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-colors"
+                className="text-foreground font-medium px-4 py-3 rounded-lg hover:bg-white/5 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
@@ -107,7 +108,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="text-center font-medium bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors mt-2"
+              className="text-center font-medium bg-primary text-primary-foreground px-4 py-3 rounded-lg hover:bg-primary/90 transition-colors mt-2"
               onClick={() => setIsOpen(false)}
             >
               Let's Talk

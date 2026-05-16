@@ -69,7 +69,8 @@ export default function FloatingAI() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+                aria-label="Close AI Assistant"
               >
                 <X size={20} />
               </button>
@@ -111,14 +112,15 @@ export default function FloatingAI() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask me anything..."
-                  className="w-full rounded-full border border-white/10 bg-black/20 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-full border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
                 />
                 <Button
                   type="submit"
                   size="icon"
-                  className="absolute right-1 top-1 bottom-1 h-auto w-8 rounded-full"
+                  className="absolute right-1 top-1 bottom-1 h-auto min-w-[44px] rounded-full"
+                  aria-label="Send message"
                 >
-                  <Send size={14} className="ml-0.5" />
+                  <Send size={16} className="ml-0.5" />
                 </Button>
               </form>
             </div>

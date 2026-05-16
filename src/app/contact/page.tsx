@@ -9,15 +9,38 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
+  const [error, setError] = useState<string | null>(null)
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
     
-    // Simulate API call to Server Action
-    setTimeout(() => {
-      setIsSubmitting(false)
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to send message")
+      }
+
       setSubmitted(true)
-    }, 1500)
+    } catch (err) {
+      setError("An error occurred. Please try again later.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -88,6 +111,7 @@ export default function Contact() {
                       <label className="text-sm font-medium text-foreground">First Name</label>
                       <input 
                         required
+                        name="firstName"
                         type="text" 
                         className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         placeholder="John"
@@ -97,6 +121,7 @@ export default function Contact() {
                       <label className="text-sm font-medium text-foreground">Last Name</label>
                       <input 
                         required
+                        name="lastName"
                         type="text" 
                         className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         placeholder="Doe"
@@ -108,6 +133,7 @@ export default function Contact() {
                     <label className="text-sm font-medium text-foreground">Email</label>
                     <input 
                       required
+                      name="email"
                       type="email" 
                       className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       placeholder="john@company.com"
@@ -118,11 +144,14 @@ export default function Contact() {
                     <label className="text-sm font-medium text-foreground">Message</label>
                     <textarea 
                       required
+                      name="message"
                       rows={4}
                       className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
+                  
+                  {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
 
                   <Button 
                     type="submit" 

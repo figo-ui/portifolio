@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import Navbar from "@/components/Navbar";
-import FloatingAI from "@/components/FloatingAI";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "AI Engineer Portfolio | Application System Developer",
-  description: "Premium personal portfolio for an Application System Developer specializing in AI-powered systems, Full-stack development, and Healthcare AI.",
-  keywords: ["AI Engineer", "Full-stack Developer", "Next.js", "React", "Machine Learning", "Portfolio"],
+  title: "Amanuel Daniel — 3D Portfolio",
+  description: "Personal Developer Portfolio",
+  keywords: ["AI Engineer", "Full-stack Developer", "Next.js", "React", "TypeScript", "Python", "Machine Learning", "Portfolio"],
+  authors: [{ name: "Amanuel Daniel" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://your-portfolio-domain.com",
+    title: "Amanuel Daniel — 3D Portfolio",
+    description: "Showcasing intelligent digital systems, AI integrations, and full-stack solutions.",
+    siteName: "Developer Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amanuel Daniel — 3D Portfolio",
+    description: "Showcasing intelligent digital systems, AI integrations, and full-stack solutions.",
+  },
 };
 
 export default function RootLayout({
@@ -21,15 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${inter.variable} font-sans antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground`}
+        className={`${inter.variable} font-sans antialiased selection:bg-primary/30 selection:text-primary-foreground`}
       >
-        <SmoothScroll>
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <FloatingAI />
-          </div>
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );

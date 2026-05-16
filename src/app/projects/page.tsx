@@ -4,40 +4,7 @@ import { motion } from "framer-motion"
 import { Github, ExternalLink, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const projects = [
-  {
-    title: "AI Healthcare Assistant",
-    category: "Healthcare AI",
-    description: "Intelligent medical triage system featuring symptom analysis, OCR for medical records, and safe AI workflows. Processed over 10k patient queries securely.",
-    stack: ["Next.js", "Python", "FastAPI", "LLM", "PostgreSQL"],
-    image: "bg-gradient-to-br from-blue-900 to-slate-900", // Placeholder for actual image
-    featured: true,
-  },
-  {
-    title: "University Management Platform",
-    category: "Enterprise System",
-    description: "Comprehensive LMS and student portal handling registration, notifications, and administrative workflows for 50k+ active users.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Redis"],
-    image: "bg-gradient-to-br from-indigo-900 to-slate-900",
-    featured: false,
-  },
-  {
-    title: "CBHI Automation System",
-    category: "Automation Engineering",
-    description: "Automated document processing system with ID verification, OCR, and payment integrations. Reduced manual entry by 85%.",
-    stack: ["Django", "React", "Tesseract", "Celery", "PostgreSQL"],
-    image: "bg-gradient-to-br from-violet-900 to-slate-900",
-    featured: false,
-  },
-  {
-    title: "Islamic AI Assistant",
-    category: "Intelligent Assistant",
-    description: "Multilingual AI tutor with storytelling, translation, and comprehensive Quran/Hadith support built on RAG architecture.",
-    stack: ["Next.js", "TypeScript", "LangChain", "Pinecone"],
-    image: "bg-gradient-to-br from-cyan-900 to-slate-900",
-    featured: false,
-  },
-]
+import { projects } from "@/lib/data/projects"
 
 export default function Projects() {
   return (
@@ -94,12 +61,16 @@ export default function Projects() {
                       </h3>
                     </div>
                     <div className="flex gap-3">
-                      <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground transition-colors">
-                        <Github size={20} />
-                      </a>
-                      <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground transition-colors">
-                        <ExternalLink size={20} />
-                      </a>
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground transition-colors" aria-label="View Source on GitHub">
+                          <Github size={20} />
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground transition-colors" aria-label="Visit Live Site">
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
                     </div>
                   </div>
                   

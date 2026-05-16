@@ -1,0 +1,36 @@
+---
+title: "Building Scalable AI Systems for Healthcare"
+date: "2024-05-10"
+description: "An exploration into the architecture behind modern AI healthcare systems, focusing on data privacy, OCR pipelines, and LLM safety filters."
+tags: ["AI", "Healthcare", "Architecture"]
+---
+
+# Building Scalable AI Systems for Healthcare
+
+The integration of Artificial Intelligence into healthcare systems requires a delicate balance between innovation, performance, and strict regulatory compliance (HIPAA). In this post, I break down the core architecture of a scalable, safe AI healthcare assistant.
+
+## The OCR Pipeline
+
+Before we can use Large Language Models (LLMs), we need data. In healthcare, this often comes in the form of physical documents or unstructured PDFs.
+
+```python
+from fastapi import FastAPI, UploadFile
+import pytesseract
+from PIL import Image
+
+app = FastAPI()
+
+@app.post("/api/v1/extract")
+async def extract_text(file: UploadFile):
+    image = Image.open(file.file)
+    text = pytesseract.image_to_string(image)
+    return {"extracted_text": text}
+```
+
+## LLM Safety Filters
+
+Once the text is extracted, it must pass through safety filters before being processed by the primary LLM to ensure no personally identifiable information (PII) is leaked or hallucinated medical advice is given.
+
+> Safety First: Always use a dedicated model for PII masking before sending data to cloud-based LLMs.
+
+By prioritizing modular architecture, we can scale the OCR, indexing, and LLM generation phases independently.

@@ -1,0 +1,33 @@
+---
+title: "AI Healthcare Assistant"
+date: "2024-03-15"
+description: "Intelligent medical triage system featuring symptom analysis, OCR for medical records, and safe AI workflows. Processed over 10k patient queries securely."
+category: "Healthcare AI"
+tech: ["Next.js", "Python", "FastAPI", "LLM", "PostgreSQL"]
+---
+
+# AI Healthcare Assistant
+
+## The Problem
+Healthcare clinics often face overwhelming patient inquiries, leading to delayed triage and administrative bottlenecks. The objective was to create an intelligent system capable of securely analyzing symptoms and processing physical medical records through OCR.
+
+## System Architecture
+
+The architecture was designed with strict separation of concerns to comply with healthcare data regulations.
+
+- **Frontend**: Next.js 15 for a blazing-fast, accessible patient portal.
+- **Backend**: FastAPI for handling high-throughput asynchronous requests.
+- **AI Layer**: A custom RAG (Retrieval-Augmented Generation) pipeline integrated with a secure LLM, backed by a vector database.
+- **OCR Engine**: Tesseract integrated into a Celery task queue for processing uploaded documents.
+
+## UX Process & Design
+
+We prioritized a "glassmorphic" medical aesthetic—clean, trustworthy, and modern. Complex workflows were broken down into simple, conversational chat interfaces.
+
+## Results
+- **85%** reduction in manual document entry time.
+- **10k+** queries processed in the first month.
+- Zero PII leaks during the security audit.
+
+## Challenges
+Integrating OCR with varying document qualities (handwritten notes, low-res scans) required training a custom YOLO model to pre-process and crop documents before passing them to Tesseract.
